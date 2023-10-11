@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type ReportDocument = HydratedDocument<Report>;
+export type ReportDocument = HydratedDocument<Gc2_report>;
 
 @Schema()
-export class Report {
+export class Gc2_report {
   @Prop()
   folderDir: string;
 
@@ -21,4 +21,4 @@ export class Report {
   updated_at: Date;
 }
 
-export const ReportSchema = SchemaFactory.createForClass(Report);
+export const Gc2_reportSchema = SchemaFactory.createForClass(Gc2_report);
