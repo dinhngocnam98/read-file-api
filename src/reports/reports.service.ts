@@ -7,6 +7,6 @@ import { Model } from 'mongoose';
 export class ReportsService {
   constructor(@InjectModel(Report.name) private reportModel: Model<Report>) {}
   findAll() {
-    return this.reportModel.find().exec();
+    return this.reportModel.find().sort({ created_at: -1 }).exec();
   }
 }

@@ -15,10 +15,10 @@ export class Report {
   signal_2: object[];
 
   @Prop()
-  createdAt: Date;
+  created_at: Date;
 
   @Prop()
-  updatedAt: Date;
+  updated_at: Date;
 }
 
 export const ReportSchema = SchemaFactory.createForClass(Report);
