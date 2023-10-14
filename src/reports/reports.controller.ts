@@ -11,6 +11,11 @@ export class ReportsController {
     return this.reportsService.findAllGc2();
   }
 
+  @Get('/gc3')
+  findAllGc3() {
+    return this.reportsService.findAllGc3();
+  }
+
   @Get('/gc4')
   findAllGc4() {
     return this.reportsService.findAllGc4();
@@ -19,5 +24,15 @@ export class ReportsController {
   @Get('/gc5')
   findAllGc5() {
     return this.reportsService.findAllGc5();
+  }
+
+  @Get('/uv1800')
+  findAllUv1800() {
+    return this.reportsService.findAllUv1800();
+  }
+
+  @Get('/uv2600')
+  findAllUv2600() {
+    return this.reportsService.findAllUv2600();
   }
 }

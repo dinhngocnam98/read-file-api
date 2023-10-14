@@ -5,6 +5,15 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Gc5_report, Gc5_reportSchema } from '../schemas/gc5_report.schema';
 import { Gc4_report, Gc4_reportSchema } from '../schemas/gc4_report.schema';
 import { Gc2_report, Gc2_reportSchema } from '../schemas/gc2_report.schema';
+import { Gc3_report, Gc3_reportSchema } from '../schemas/gc3_report.schema';
+import {
+  Uv1800_report,
+  Uv1800_reportSchema,
+} from '../schemas/uv1800_report.schema';
+import {
+  Uv2600_report,
+  Uv2600_reportSchema,
+} from '../schemas/uv2600_report.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([
@@ -17,8 +26,20 @@ import { Gc2_report, Gc2_reportSchema } from '../schemas/gc2_report.schema';
         schema: Gc4_reportSchema,
       },
       {
+        name: Gc3_report.name,
+        schema: Gc3_reportSchema,
+      },
+      {
         name: Gc2_report.name,
         schema: Gc2_reportSchema,
+      },
+      {
+        name: Uv1800_report.name,
+        schema: Uv1800_reportSchema,
+      },
+      {
+        name: Uv2600_report.name,
+        schema: Uv2600_reportSchema,
       },
     ]),
   ],
