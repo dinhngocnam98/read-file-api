@@ -6,6 +6,12 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('Reports')
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
+
+  @Get('/gc1')
+  findAllGc1() {
+    return this.reportsService.findAllGc1();
+  }
+
   @Get('/gc2')
   findAllGc2() {
     return this.reportsService.findAllGc2();
@@ -34,5 +40,10 @@ export class ReportsController {
   @Get('/uv2600')
   findAllUv2600() {
     return this.reportsService.findAllUv2600();
+  }
+
+  @Get('/aas')
+  findAllAas() {
+    return this.reportsService.findAllAas();
   }
 }

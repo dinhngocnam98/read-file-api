@@ -14,6 +14,8 @@ import {
   Uv2600_report,
   Uv2600_reportSchema,
 } from '../schemas/uv2600_report.schema';
+import { Aas_report, Aas_reportSchema } from '../schemas/aas_report.schema';
+import { Gc1_report, Gc1_reportSchema } from '../schemas/gc1_report.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([
@@ -33,6 +35,11 @@ import {
         name: Gc2_report.name,
         schema: Gc2_reportSchema,
       },
+
+      {
+        name: Gc1_report.name,
+        schema: Gc1_reportSchema,
+      },
       {
         name: Uv1800_report.name,
         schema: Uv1800_reportSchema,
@@ -40,6 +47,10 @@ import {
       {
         name: Uv2600_report.name,
         schema: Uv2600_reportSchema,
+      },
+      {
+        name: Aas_report.name,
+        schema: Aas_reportSchema,
       },
     ]),
   ],
