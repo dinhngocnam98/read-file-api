@@ -25,35 +25,131 @@ export class ReportsService {
     @InjectModel(Aas_report.name) private Aas_reportModel: Model<Aas_report>,
   ) {}
 
-  findAllGc1() {
-    return this.Gc1_reportModel.find().sort({ created_at: -1 }).exec();
+  async findAllGc1() {
+    const data = await this.Gc1_reportModel.find()
+      .sort({ created_at: -1 })
+      .exec();
+
+    return {
+      data: data,
+      status: 200,
+      success: true,
+    };
   }
 
-  findAllGc2() {
-    return this.Gc2_reportModel.find().sort({ created_at: -1 }).exec();
+  deleteAllGc1() {
+    return this.Gc1_reportModel.deleteMany();
   }
 
-  findAllGc3() {
-    return this.Gc3_reportModel.find().sort({ created_at: -1 }).exec();
+  async findAllGc2() {
+    const data = await this.Gc2_reportModel.find()
+      .sort({ created_at: -1 })
+      .exec();
+
+    return {
+      data: data,
+      status: 200,
+      success: true,
+    };
   }
 
-  findAllGc4() {
-    return this.Gc4_reportModel.find().sort({ created_at: -1 }).exec();
+  deleteAllGc2() {
+    return this.Gc2_reportModel.deleteMany();
   }
 
-  findAllGc5() {
-    return this.Gc5_reportModel.find().sort({ created_at: -1 }).exec();
+  async findAllGc3() {
+    const data = await this.Gc3_reportModel.find()
+      .sort({ created_at: -1 })
+      .exec();
+
+    return {
+      data: data,
+      status: 200,
+      success: true,
+    };
   }
 
-  findAllUv1800() {
-    return this.Uv1800_reportModel.find().sort({ created_at: -1 }).exec();
+  deleteAllGc3() {
+    return this.Gc3_reportModel.deleteMany();
   }
 
-  findAllUv2600() {
-    return this.Uv2600_reportModel.find().sort({ created_at: -1 }).exec();
+  async findAllGc4() {
+    const data = await this.Gc4_reportModel.find()
+      .sort({ created_at: -1 })
+      .exec();
+
+    return {
+      data: data,
+      status: 200,
+      success: true,
+    };
   }
 
-  findAllAas() {
-    return this.Aas_reportModel.find().sort({ created_at: -1 }).exec();
+  deleteAllGc4() {
+    return this.Gc4_reportModel.deleteMany();
+  }
+
+  async findAllGc5() {
+    const data = await this.Gc5_reportModel.find()
+      .sort({ created_at: -1 })
+      .exec();
+
+    return {
+      data: data,
+      status: 200,
+      success: true,
+    };
+  }
+
+  deleteAllGc5() {
+    return this.Gc5_reportModel.deleteMany();
+  }
+
+  async findAllUv1800() {
+    const data = await this.Uv1800_reportModel.find()
+      .sort({ created_at: -1 })
+      .exec();
+
+    return {
+      data: data,
+      status: 200,
+      success: true,
+    };
+  }
+
+  deleteAllUv1800() {
+    return this.Uv1800_reportModel.deleteMany();
+  }
+
+  async findAllUv2600() {
+    const data = await this.Uv2600_reportModel.find()
+      .sort({ created_at: -1 })
+      .exec();
+
+    return {
+      data: data,
+      status: 200,
+      success: true,
+    };
+  }
+
+  deleteAllUv2600() {
+    return this.Uv2600_reportModel.deleteMany();
+  }
+
+  async findAllAas() {
+    const data = await this.Aas_reportModel.find()
+      .sort({ created_at: -1 })
+      .exec();
+
+    return {
+      data: data,
+      status: 200,
+      success: true,
+    };
+  }
+
+  deleteAllAas() {
+    return this.Aas_reportModel.deleteMany();
   }
 }

@@ -6,7 +6,7 @@ export type ReportDocument = HydratedDocument<Uv2600_report>;
 @Schema()
 export class Uv2600_report {
   @Prop()
-  folderDir: string;
+  folder_dir: string;
 
   @Prop()
   signal_1: object[];
@@ -14,10 +14,10 @@ export class Uv2600_report {
   @Prop()
   signal_2: object[];
 
-  @Prop()
+  @Prop({ default: Date.now })
   created_at: Date;
 
-  @Prop()
+  @Prop({ default: Date.now, set: (v: Date) => v || Date.now() })
   updated_at: Date;
 }
 
