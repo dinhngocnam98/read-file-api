@@ -3,7 +3,7 @@ import { ReportsService } from './reports.service';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('reports')
-@ApiTags('Reports')
+@ApiTags('Máy GC1,GC2,GC3,GC4,GC5,HPLC')
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
 
@@ -57,33 +57,13 @@ export class ReportsController {
   //   return this.reportsService.deleteAllGc5();
   // }
 
-  @Get('/uv1800')
+  @Get('/hplc')
   findAllUv1800() {
-    return this.reportsService.findAllUv1800();
+    return this.reportsService.findAllHplc();
   }
 
-  // @Delete('/uv1800')
-  // deleteAllUv1800() {
-  //   return this.reportsService.deleteAllUv1800();
-  // }
-
-  @Get('/uv2600')
-  findAllUv2600() {
-    return this.reportsService.findAllUv2600();
-  }
-
-  // @Delete('/uv2600')
-  // deleteAllUv2600() {
-  //   return this.reportsService.deleteAllUv2600();
-  // }
-
-  @Get('/aas')
-  findAllAas() {
-    return this.reportsService.findAllAas();
-  }
-
-  // @Delete('/aas')
-  // deleteAllAas() {
-  //   return this.reportsService.deleteAllAas();
+  // @Delete('/hplc')
+  // deleteAllHplc() {
+  //   return this.reportsService.deleteAllHplc();
   // }
 }

@@ -9,6 +9,7 @@ import { Uv1800_report } from '../schemas/uv1800_report.schema';
 import { Uv2600_report } from '../schemas/uv2600_report.schema';
 import { Gc1_report } from '../schemas/gc1_report.schema';
 import { Aas_report } from '../schemas/aas_report.schema';
+import { Hplc_report } from '../schemas/hplc_report.schema';
 
 @Injectable()
 export class ReportsService {
@@ -18,6 +19,7 @@ export class ReportsService {
     @InjectModel(Gc3_report.name) private Gc3_reportModel: Model<Gc3_report>,
     @InjectModel(Gc2_report.name) private Gc2_reportModel: Model<Gc2_report>,
     @InjectModel(Gc1_report.name) private Gc1_reportModel: Model<Gc1_report>,
+    @InjectModel(Hplc_report.name) private Hplc_reportModel: Model<Hplc_report>,
     @InjectModel(Uv1800_report.name)
     private Uv1800_reportModel: Model<Uv1800_report>,
     @InjectModel(Uv2600_report.name)
@@ -103,6 +105,22 @@ export class ReportsService {
 
   deleteAllGc5() {
     return this.Gc5_reportModel.deleteMany();
+  }
+
+  async findAllHplc() {
+    const data = await this.Hplc_reportModel.find()
+      .sort({ created_at: -1 })
+      .exec();
+
+    return {
+      data: data,
+      status: 200,
+      success: true,
+    };
+  }
+
+  deleteAllHplc() {
+    return this.Hplc_reportModel.deleteMany();
   }
 
   async findAllUv1800() {

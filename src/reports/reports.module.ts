@@ -16,6 +16,9 @@ import {
 } from '../schemas/uv2600_report.schema';
 import { Aas_report, Aas_reportSchema } from '../schemas/aas_report.schema';
 import { Gc1_report, Gc1_reportSchema } from '../schemas/gc1_report.schema';
+import { AasController } from './aas.controller';
+import { UvController } from './uv.controller';
+import { Hplc_report, Hplc_reportSchema } from '../schemas/hplc_report.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([
@@ -52,9 +55,13 @@ import { Gc1_report, Gc1_reportSchema } from '../schemas/gc1_report.schema';
         name: Aas_report.name,
         schema: Aas_reportSchema,
       },
+      {
+        name: Hplc_report.name,
+        schema: Hplc_reportSchema,
+      },
     ]),
   ],
-  controllers: [ReportsController],
+  controllers: [ReportsController, AasController, UvController],
   providers: [ReportsService],
 })
 export class ReportsModule {}
