@@ -1,15 +1,21 @@
-import { Controller, Delete, Get } from '@nestjs/common';
+import { Controller, Delete, Get, Query } from '@nestjs/common';
 import { ReportsService } from './reports.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
 
 @Controller('aas')
 @ApiTags('Máy AAS')
 export class AasController {
   constructor(private readonly reportsService: ReportsService) {}
 
-  @Get('/aas')
-  findAllAas() {
-    return this.reportsService.findAllAas();
+  @Get('')
+  @ApiQuery({
+    name: 'time',
+    type: String,
+    description: 'DD/MM/YYYY',
+    required: false,
+  })
+  findAllAas(@Query('time') time: string) {
+    return this.reportsService.findAllAas(time);
   }
 
   // @Delete('/aas')

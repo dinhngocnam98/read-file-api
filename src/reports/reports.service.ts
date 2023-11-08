@@ -27,147 +27,369 @@ export class ReportsService {
     @InjectModel(Aas_report.name) private Aas_reportModel: Model<Aas_report>,
   ) {}
 
-  async findAllGc1() {
-    const data = await this.Gc1_reportModel.find()
-      .sort({ created_at: -1 })
-      .exec();
+  async findAllGc1(time: string) {
+    let data = [];
+    if (time) {
+      const date = new Date(time);
+      console.log(date);
+      data = await this.Gc1_reportModel.find({
+        date: {
+          $gte: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            0,
+            0,
+            0,
+          ),
+          $lt: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + 1,
+            0,
+            0,
+            0,
+          ),
+        },
+      })
+        .sort({ date: -1 })
+        .exec();
+    } else {
+      data = await this.Gc1_reportModel.find().sort({ date: -1 }).exec();
+    }
 
     return {
-      data: data,
+      result: {
+        data: data,
+        count: data.length,
+      },
       status: 200,
       success: true,
     };
   }
 
-  deleteAllGc1() {
-    return this.Gc1_reportModel.deleteMany();
-  }
-
-  async findAllGc2() {
-    const data = await this.Gc2_reportModel.find()
-      .sort({ created_at: -1 })
-      .exec();
+  async findAllGc2(time: string) {
+    let data = [];
+    if (time) {
+      const date = new Date(time);
+      console.log(date);
+      data = await this.Gc2_reportModel.find({
+        date: {
+          $gte: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            0,
+            0,
+            0,
+          ),
+          $lt: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + 1,
+            0,
+            0,
+            0,
+          ),
+        },
+      })
+        .sort({ date: -1 })
+        .exec();
+    } else {
+      data = await this.Gc2_reportModel.find().sort({ date: -1 }).exec();
+    }
 
     return {
-      data: data,
+      result: {
+        data: data,
+        count: data.length,
+      },
       status: 200,
       success: true,
     };
   }
 
-  deleteAllGc2() {
-    return this.Gc2_reportModel.deleteMany();
-  }
-
-  async findAllGc3() {
-    const data = await this.Gc3_reportModel.find()
-      .sort({ created_at: -1 })
-      .exec();
+  async findAllGc3(time: string) {
+    let data = [];
+    if (time) {
+      const date = new Date(time);
+      console.log(date);
+      data = await this.Gc3_reportModel.find({
+        date: {
+          $gte: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            0,
+            0,
+            0,
+          ),
+          $lt: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + 1,
+            0,
+            0,
+            0,
+          ),
+        },
+      })
+        .sort({ date: -1 })
+        .exec();
+    } else {
+      data = await this.Gc3_reportModel.find().sort({ date: -1 }).exec();
+    }
 
     return {
-      data: data,
+      result: {
+        data: data,
+        count: data.length,
+      },
       status: 200,
       success: true,
     };
   }
 
-  deleteAllGc3() {
-    return this.Gc3_reportModel.deleteMany();
-  }
-
-  async findAllGc4() {
-    const data = await this.Gc4_reportModel.find()
-      .sort({ created_at: -1 })
-      .exec();
+  async findAllGc4(time: string) {
+    let data = [];
+    if (time) {
+      const date = new Date(time);
+      console.log(date);
+      data = await this.Gc4_reportModel.find({
+        date: {
+          $gte: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            0,
+            0,
+            0,
+          ),
+          $lt: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + 1,
+            0,
+            0,
+            0,
+          ),
+        },
+      })
+        .sort({ date: -1 })
+        .exec();
+    } else {
+      data = await this.Gc4_reportModel.find().sort({ date: -1 }).exec();
+    }
 
     return {
-      data: data,
+      result: {
+        data: data,
+        count: data.length,
+      },
       status: 200,
       success: true,
     };
   }
 
-  deleteAllGc4() {
-    return this.Gc4_reportModel.deleteMany();
-  }
-
-  async findAllGc5() {
-    const data = await this.Gc5_reportModel.find()
-      .sort({ created_at: -1 })
-      .exec();
+  async findAllGc5(time: string) {
+    let data = [];
+    if (time) {
+      const date = new Date(time);
+      data = await this.Gc5_reportModel.find({
+        date: {
+          $gte: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            0,
+            0,
+            0,
+          ),
+          $lt: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + 1,
+            0,
+            0,
+            0,
+          ),
+        },
+      })
+        .sort({ date: -1 })
+        .exec();
+    } else {
+      data = await this.Gc5_reportModel.find().sort({ date: -1 }).exec();
+    }
 
     return {
-      data: data,
+      result: {
+        data: data,
+        count: data.length,
+      },
       status: 200,
       success: true,
     };
   }
 
-  deleteAllGc5() {
-    return this.Gc5_reportModel.deleteMany();
-  }
-
-  async findAllHplc() {
-    const data = await this.Hplc_reportModel.find()
-      .sort({ created_at: -1 })
-      .exec();
+  async findAllUv1800(time: string) {
+    let data = [];
+    if (time) {
+      const date = new Date(time);
+      data = await this.Uv1800_reportModel.find({
+        date: {
+          $gte: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            0,
+            0,
+            0,
+          ),
+          $lt: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + 1,
+            0,
+            0,
+            0,
+          ),
+        },
+      })
+        .sort({ date: -1 })
+        .exec();
+    } else {
+      data = await this.Uv1800_reportModel.find().sort({ date: -1 }).exec();
+    }
 
     return {
-      data: data,
+      result: {
+        data: data,
+        count: data.length,
+      },
       status: 200,
       success: true,
     };
   }
 
-  deleteAllHplc() {
-    return this.Hplc_reportModel.deleteMany();
-  }
-
-  async findAllUv1800() {
-    const data = await this.Uv1800_reportModel.find()
-      .sort({ created_at: -1 })
-      .exec();
+  async findAllUv2600(time: string) {
+    let data = [];
+    if (time) {
+      const date = new Date(time);
+      data = await this.Uv2600_reportModel.find({
+        date: {
+          $gte: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            0,
+            0,
+            0,
+          ),
+          $lt: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + 1,
+            0,
+            0,
+            0,
+          ),
+        },
+      })
+        .sort({ date: -1 })
+        .exec();
+    } else {
+      data = await this.Uv2600_reportModel.find().sort({ date: -1 }).exec();
+    }
 
     return {
-      data: data,
+      result: {
+        data: data,
+        count: data.length,
+      },
       status: 200,
       success: true,
     };
   }
 
-  deleteAllUv1800() {
-    return this.Uv1800_reportModel.deleteMany();
-  }
-
-  async findAllUv2600() {
-    const data = await this.Uv2600_reportModel.find()
-      .sort({ created_at: -1 })
-      .exec();
+  async findAllHplc(time: string) {
+    let data = [];
+    if (time) {
+      const date = new Date(time);
+      console.log(date);
+      data = await this.Hplc_reportModel.find({
+        date: {
+          $gte: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            0,
+            0,
+            0,
+          ),
+          $lt: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + 1,
+            0,
+            0,
+            0,
+          ),
+        },
+      })
+        .sort({ date: -1 })
+        .exec();
+    } else {
+      data = await this.Hplc_reportModel.find().sort({ date: -1 }).exec();
+    }
 
     return {
-      data: data,
+      result: {
+        data: data,
+        count: data.length,
+      },
       status: 200,
       success: true,
     };
   }
 
-  deleteAllUv2600() {
-    return this.Uv2600_reportModel.deleteMany();
-  }
-
-  async findAllAas() {
-    const data = await this.Aas_reportModel.find()
-      .sort({ created_at: -1 })
-      .exec();
+  async findAllAas(time: string) {
+    let data = [];
+    if (time) {
+      const date = new Date(time);
+      console.log(date);
+      data = await this.Aas_reportModel.find({
+        date: {
+          $gte: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            0,
+            0,
+            0,
+          ),
+          $lt: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + 1,
+            0,
+            0,
+            0,
+          ),
+        },
+      })
+        .sort({ date: -1 })
+        .exec();
+    } else {
+      data = await this.Aas_reportModel.find().sort({ date: -1 }).exec();
+    }
 
     return {
-      data: data,
+      result: {
+        data: data,
+        count: data.length,
+      },
       status: 200,
       success: true,
     };
-  }
-
-  deleteAllAas() {
-    return this.Aas_reportModel.deleteMany();
   }
 }

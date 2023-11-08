@@ -1,15 +1,21 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ReportsService } from './reports.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
 
-@Controller('uv')
+@Controller('')
 @ApiTags('Máy UV')
 export class UvController {
   constructor(private readonly reportsService: ReportsService) {}
 
   @Get('/uv1800')
-  findAllUv1800() {
-    return this.reportsService.findAllUv1800();
+  @ApiQuery({
+    name: 'time',
+    type: String,
+    description: 'DD/MM/YYYY',
+    required: false,
+  })
+  findAllUv1800(@Query('time') time: string) {
+    return this.reportsService.findAllUv1800(time);
   }
 
   // @Delete('/uv1800')
@@ -18,8 +24,14 @@ export class UvController {
   // }
 
   @Get('/uv2600')
-  findAllUv2600() {
-    return this.reportsService.findAllUv2600();
+  @ApiQuery({
+    name: 'time',
+    type: String,
+    description: 'DD/MM/YYYY',
+    required: false,
+  })
+  findAllUv2600(@Query('time') time: string) {
+    return this.reportsService.findAllUv2600(time);
   }
 
   // @Delete('/uv2600')
