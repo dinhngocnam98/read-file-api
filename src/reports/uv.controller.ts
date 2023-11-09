@@ -15,7 +15,7 @@ export class UvController {
     required: false,
   })
   findAllUv1800(@Query('time') time: string) {
-    return this.reportsService.findAllUv1800(time);
+    return this.reportsService.findAll(time, 'uv1800');
   }
 
   // @Delete('/uv1800')
@@ -31,7 +31,7 @@ export class UvController {
     required: false,
   })
   findAllUv2600(@Query('time') time: string) {
-    return this.reportsService.findAllUv2600(time);
+    return this.reportsService.findAll(time, 'uv2600');
   }
 
   // @Delete('/uv2600')

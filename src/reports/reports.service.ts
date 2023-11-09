@@ -10,6 +10,7 @@ import { Uv2600_report } from '../schemas/uv2600_report.schema';
 import { Gc1_report } from '../schemas/gc1_report.schema';
 import { Aas_report } from '../schemas/aas_report.schema';
 import { Hplc_report } from '../schemas/hplc_report.schema';
+import { format } from 'date-fns';
 
 @Injectable()
 export class ReportsService {
@@ -27,369 +28,74 @@ export class ReportsService {
     @InjectModel(Aas_report.name) private Aas_reportModel: Model<Aas_report>,
   ) {}
 
-  async findAllGc1(time: string) {
+  async findAll(time: string, database: string) {
     let data = [];
+    const databaseModel = await this.getDB(database);
     if (time) {
       const date = new Date(time);
-      console.log(date);
-      data = await this.Gc1_reportModel.find({
-        date: {
-          $gte: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate(),
-            0,
-            0,
-            0,
-          ),
-          $lt: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate() + 1,
-            0,
-            0,
-            0,
-          ),
-        },
-      })
+      data = await databaseModel
+        .find({
+          date: {
+            $gte: new Date(
+              date.getFullYear(),
+              date.getMonth(),
+              date.getDate(),
+              0,
+              0,
+              0,
+            ),
+            $lt: new Date(
+              date.getFullYear(),
+              date.getMonth(),
+              date.getDate() + 1,
+              0,
+              0,
+              0,
+            ),
+          },
+        })
+        .lean()
         .sort({ date: -1 })
         .exec();
     } else {
-      data = await this.Gc1_reportModel.find().sort({ date: -1 }).exec();
+      data = await databaseModel.find().lean().sort({ date: -1 }).exec();
     }
-
+    const result = data.map((item) => {
+      if (item.date) {
+        item.date = format(item.date, 'dd/MM/yyyy HH:mm:ss');
+      }
+      item.created_at = format(item.created_at, 'dd/MM/yyyy HH:mm:ss');
+      item.updated_at = format(item.updated_at, 'dd/MM/yyyy HH:mm:ss');
+      return item;
+    });
     return {
       result: {
-        data: data,
-        count: data.length,
+        data: result,
+        count: result.length,
       },
       status: 200,
       success: true,
     };
   }
-
-  async findAllGc2(time: string) {
-    let data = [];
-    if (time) {
-      const date = new Date(time);
-      console.log(date);
-      data = await this.Gc2_reportModel.find({
-        date: {
-          $gte: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate(),
-            0,
-            0,
-            0,
-          ),
-          $lt: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate() + 1,
-            0,
-            0,
-            0,
-          ),
-        },
-      })
-        .sort({ date: -1 })
-        .exec();
-    } else {
-      data = await this.Gc2_reportModel.find().sort({ date: -1 }).exec();
+  private getDB(db: string): any {
+    if (db === 'gc1') {
+      return this.Gc1_reportModel;
+    } else if (db === 'gc2') {
+      return this.Gc2_reportModel;
+    } else if (db === 'gc3') {
+      return this.Gc3_reportModel;
+    } else if (db === 'gc4') {
+      return this.Gc4_reportModel;
+    } else if (db === 'gc5') {
+      return this.Gc5_reportModel;
+    } else if (db === 'hplc') {
+      return this.Hplc_reportModel;
+    } else if (db === 'uv1800') {
+      return this.Uv1800_reportModel;
+    } else if (db === 'uv2600') {
+      return this.Uv2600_reportModel;
+    } else if (db === 'aas') {
+      return this.Aas_reportModel;
     }
-
-    return {
-      result: {
-        data: data,
-        count: data.length,
-      },
-      status: 200,
-      success: true,
-    };
-  }
-
-  async findAllGc3(time: string) {
-    let data = [];
-    if (time) {
-      const date = new Date(time);
-      console.log(date);
-      data = await this.Gc3_reportModel.find({
-        date: {
-          $gte: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate(),
-            0,
-            0,
-            0,
-          ),
-          $lt: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate() + 1,
-            0,
-            0,
-            0,
-          ),
-        },
-      })
-        .sort({ date: -1 })
-        .exec();
-    } else {
-      data = await this.Gc3_reportModel.find().sort({ date: -1 }).exec();
-    }
-
-    return {
-      result: {
-        data: data,
-        count: data.length,
-      },
-      status: 200,
-      success: true,
-    };
-  }
-
-  async findAllGc4(time: string) {
-    let data = [];
-    if (time) {
-      const date = new Date(time);
-      console.log(date);
-      data = await this.Gc4_reportModel.find({
-        date: {
-          $gte: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate(),
-            0,
-            0,
-            0,
-          ),
-          $lt: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate() + 1,
-            0,
-            0,
-            0,
-          ),
-        },
-      })
-        .sort({ date: -1 })
-        .exec();
-    } else {
-      data = await this.Gc4_reportModel.find().sort({ date: -1 }).exec();
-    }
-
-    return {
-      result: {
-        data: data,
-        count: data.length,
-      },
-      status: 200,
-      success: true,
-    };
-  }
-
-  async findAllGc5(time: string) {
-    let data = [];
-    if (time) {
-      const date = new Date(time);
-      data = await this.Gc5_reportModel.find({
-        date: {
-          $gte: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate(),
-            0,
-            0,
-            0,
-          ),
-          $lt: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate() + 1,
-            0,
-            0,
-            0,
-          ),
-        },
-      })
-        .sort({ date: -1 })
-        .exec();
-    } else {
-      data = await this.Gc5_reportModel.find().sort({ date: -1 }).exec();
-    }
-
-    return {
-      result: {
-        data: data,
-        count: data.length,
-      },
-      status: 200,
-      success: true,
-    };
-  }
-
-  async findAllUv1800(time: string) {
-    let data = [];
-    if (time) {
-      const date = new Date(time);
-      data = await this.Uv1800_reportModel.find({
-        date: {
-          $gte: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate(),
-            0,
-            0,
-            0,
-          ),
-          $lt: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate() + 1,
-            0,
-            0,
-            0,
-          ),
-        },
-      })
-        .sort({ date: -1 })
-        .exec();
-    } else {
-      data = await this.Uv1800_reportModel.find().sort({ date: -1 }).exec();
-    }
-
-    return {
-      result: {
-        data: data,
-        count: data.length,
-      },
-      status: 200,
-      success: true,
-    };
-  }
-
-  async findAllUv2600(time: string) {
-    let data = [];
-    if (time) {
-      const date = new Date(time);
-      data = await this.Uv2600_reportModel.find({
-        date: {
-          $gte: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate(),
-            0,
-            0,
-            0,
-          ),
-          $lt: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate() + 1,
-            0,
-            0,
-            0,
-          ),
-        },
-      })
-        .sort({ date: -1 })
-        .exec();
-    } else {
-      data = await this.Uv2600_reportModel.find().sort({ date: -1 }).exec();
-    }
-
-    return {
-      result: {
-        data: data,
-        count: data.length,
-      },
-      status: 200,
-      success: true,
-    };
-  }
-
-  async findAllHplc(time: string) {
-    let data = [];
-    if (time) {
-      const date = new Date(time);
-      console.log(date);
-      data = await this.Hplc_reportModel.find({
-        date: {
-          $gte: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate(),
-            0,
-            0,
-            0,
-          ),
-          $lt: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate() + 1,
-            0,
-            0,
-            0,
-          ),
-        },
-      })
-        .sort({ date: -1 })
-        .exec();
-    } else {
-      data = await this.Hplc_reportModel.find().sort({ date: -1 }).exec();
-    }
-
-    return {
-      result: {
-        data: data,
-        count: data.length,
-      },
-      status: 200,
-      success: true,
-    };
-  }
-
-  async findAllAas(time: string) {
-    let data = [];
-    if (time) {
-      const date = new Date(time);
-      console.log(date);
-      data = await this.Aas_reportModel.find({
-        date: {
-          $gte: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate(),
-            0,
-            0,
-            0,
-          ),
-          $lt: new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate() + 1,
-            0,
-            0,
-            0,
-          ),
-        },
-      })
-        .sort({ date: -1 })
-        .exec();
-    } else {
-      data = await this.Aas_reportModel.find().sort({ date: -1 }).exec();
-    }
-
-    return {
-      result: {
-        data: data,
-        count: data.length,
-      },
-      status: 200,
-      success: true,
-    };
   }
 }

@@ -15,7 +15,7 @@ export class AasController {
     required: false,
   })
   findAllAas(@Query('time') time: string) {
-    return this.reportsService.findAllAas(time);
+    return this.reportsService.findAll(time, 'aas');
   }
 
   // @Delete('/aas')

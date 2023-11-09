@@ -15,7 +15,7 @@ export class ReportsController {
     required: false,
   })
   findAllGc1(@Query('time') time: string) {
-    return this.reportsService.findAllGc1(time);
+    return this.reportsService.findAll(time, 'gc1');
   }
 
   // @Delete('/gc1')
@@ -31,7 +31,7 @@ export class ReportsController {
     required: false,
   })
   findAllGc2(@Query('time') time: string) {
-    return this.reportsService.findAllGc2(time);
+    return this.reportsService.findAll(time, 'gc2');
   }
 
   // @Delete('/gc2')
@@ -47,7 +47,7 @@ export class ReportsController {
     required: false,
   })
   findAllGc3(@Query('time') time: string) {
-    return this.reportsService.findAllGc3(time);
+    return this.reportsService.findAll(time,'gc3');
   }
 
   // @Delete('/gc3')
@@ -63,7 +63,7 @@ export class ReportsController {
     required: false,
   })
   findAllGc4(@Query('time') time: string) {
-    return this.reportsService.findAllGc4(time);
+    return this.reportsService.findAll(time, 'gc4');
   }
 
   // @Delete('/gc4')
@@ -79,7 +79,7 @@ export class ReportsController {
     required: false,
   })
   findAllGc5(@Query('time') time: string) {
-    return this.reportsService.findAllGc5(time);
+    return this.reportsService.findAll(time, 'gc5');
   }
 
   // @Delete('/gc5')
@@ -95,7 +95,7 @@ export class ReportsController {
     required: false,
   })
   findAllUv1800(@Query('time') time: string) {
-    return this.reportsService.findAllHplc(time);
+    return this.reportsService.findAll(time, 'hplc');
   }
 
   // @Delete('/hplc')
