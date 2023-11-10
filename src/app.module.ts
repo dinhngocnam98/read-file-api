@@ -4,6 +4,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ReportsModule } from './reports/reports.module';
 import Config from './common/config';
 import { MongoDbConfig } from './common/config.interface';
+import { AppService } from './app.service';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -20,5 +22,7 @@ import { MongoDbConfig } from './common/config.interface';
     }),
     ReportsModule,
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
