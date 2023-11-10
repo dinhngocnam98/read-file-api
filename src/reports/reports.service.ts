@@ -32,7 +32,8 @@ export class ReportsService {
     let data = [];
     const databaseModel = await this.getDB(database);
     if (time) {
-      const date = new Date(time);
+      // const date = new Date(time);
+      const date = this.parseDate(time);
       data = await databaseModel
         .find({
           date: {
@@ -76,6 +77,11 @@ export class ReportsService {
       status: 200,
       success: true,
     };
+  }
+  private parseDate(input) {
+    const parts = input.split('/');
+    const date = new Date(parts[2], parts[1] - 1, parts[0]);
+    return date;
   }
   private getDB(db: string): any {
     if (db === 'gc1') {
