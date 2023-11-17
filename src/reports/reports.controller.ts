@@ -1,8 +1,8 @@
-import {Controller, Delete, Get, Query} from '@nestjs/common';
+import { Controller, Delete, Get, Query } from '@nestjs/common';
 import { ReportsService } from './reports.service';
 import { ApiQuery, ApiTags } from '@nestjs/swagger';
 
-@Controller('reports')
+@Controller('')
 @ApiTags('Máy GC1,GC2,GC3,GC4,GC5,HPLC')
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
