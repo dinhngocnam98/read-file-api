@@ -57,6 +57,7 @@ export class ReportsService {
         })
         .lean()
         .sort({ date: -1 })
+        .limit(500)
         .exec();
     } else {
       data = await databaseModel.find().lean().sort({ date: -1 }).exec();
@@ -78,7 +79,17 @@ export class ReportsService {
       success: true,
     };
   }
-  private parseDate(input) {
+
+  async deleteAll(database: string) {
+    const databaseModel = await this.getDB(database);
+    await databaseModel.deleteMany();
+    return {
+      message: 'Database deleted successfully',
+      status: 200,
+      success: true,
+    };
+  }
+  private parseDate(input: any) {
     const parts = input.split('/');
     const date = new Date(parts[2], parts[1] - 1, parts[0]);
     return date;
