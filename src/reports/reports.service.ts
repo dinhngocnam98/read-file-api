@@ -57,10 +57,15 @@ export class ReportsService {
         })
         .lean()
         .sort({ date: -1 })
-        .limit(500)
+        .limit(15)
         .exec();
     } else {
-      data = await databaseModel.find().lean().sort({ date: -1 }).exec();
+      data = await databaseModel
+        .find()
+        .lean()
+        .sort({ date: -1 })
+        .limit(15)
+        .exec();
     }
     const result = data.map((item) => {
       if (item.date) {
