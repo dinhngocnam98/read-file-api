@@ -106,43 +106,7 @@ sudo apt install -y nodejs npm
 sudo apt update
 sudo apt install -y nodejs npm
 ```
-2. Bước 2: Tạo SSL Key và Chứng chỉ tự ký
-- Trên Ubuntu, bạn có thể cài đặt OpenSSL bằng lệnh:
-```bash
-sudo apt install openssl
-```
-- Tạo Private Key:
-```bash
-openssl genpkey -algorithm RSA -out private-key.pem
-```
-Lưu ý: Bạn có thể điều chỉnh độ dài của key bằng cách thêm -aes256 (hoặc độ dài khác) vào lệnh.
-- Tạo Certificate Signing Request (CSR)::
-```bash
-openssl req -new -key private-key.pem -out csr.pem
-Tạo Self-Signed Certificate từ CSR:
-```
-Trong quá trình tạo CSR, bạn sẽ được yêu cầu nhập một số thông tin như Tên ổ chứa (Common Name), tỉnh, quốc gia, v.v.
-- Tạo Self-Signed Certificate từ CSR:
-```bash
-openssl x509 -req -days 365 -in csr.pem -signkey private-key.pem -out certificate.pem
-Lưu ý: Điều này tạo ra một chứng chỉ có thời hạn là 365 ngày. Bạn có thể điều chỉnh số ngày bằng cách sửa giá trị của -days.
-```
-3. Bước 3: Sử dụng Key và Chứng chỉ trong ứng dụng Express
-   Sử dụng private key (private-key.pem) và certificate (certificate.pem) trong mã ứng dụng Express, như đã mô tả trong ví dụ trong câu trả lời trước:
-```nashorn js
-const options = {
-    key: fs.readFileSync('path/to/private-key.pem'),
-    cert: fs.readFileSync('path/to/certificate.pem'),
-};
-
-const server = https.createServer(options, app);
-
-server.listen(port, () => {
-    console.log(`Server running on https://localhost:${port}`);
-});
-```
-Thay thế 'path/to/private-key.pem' và 'path/to/certificate.pem' bằng đường dẫn thực tế của key và chứng chỉ bạn vừa tạo.
-4. Bước 4: Chạy ứng dụng Express với SSL
+2. Bước 2: Chạy ứng dụng Express với SSL
 - Chạy lệnh sau để cài đặt một số gói cần thiết:
 ```bash
 npm install
